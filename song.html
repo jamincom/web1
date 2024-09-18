@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITY NIGHT</title>
+    <style>
+
+        @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 100; letter-spacing : 0.3px;
+    font-style: light;
+}
+        body {
+            font-family: 'Pretendard-Regular', sans-serif; font-weight: 100; color: #E0E0E0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #404A57;
+        }
+h1 {font-family: 'Pretendard-Regular', sans-serif; font-weight: lighter;}
+h2 {font-family: 'Pretendard-Regular', sans-serif; font-weight: lighter;}
+        .container {
+            text-align: left;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .rect-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 7px; 
+            margin-bottom: 10px;
+        }
+
+        .rectangle {
+            width: 375px;
+            height: 230px;
+            background-color: #ddd;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: opacity 0.3s; 
+        }
+
+        .rectangle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        
+        .rectangle:hover {
+            opacity: 0.5;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            margin-top: 10px;
+            width: 1160px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">TEMPERATURE IN THE CITY</h1>
+        <div class="rect-container">
+            <div class="rectangle" data-sound="./mp3/1.mp3">
+                <img src="./img/1.jpg" alt="이미지 1">
+            </div>
+            <div class="rectangle" data-sound="./mp3/3.mp3">
+                <img src="./img/2.jpg" alt="이미지 2">
+            </div>
+            <div class="rectangle" data-sound="./mp3/2.mp3">
+                <img src="./img/3.jpg" alt="이미지 3">
+            </div>
+        </div>
+        <h2 class="subtitle">City Night Playlist &nbsp ... &nbsp 1. Lay.bn - ℃ (the city)  &nbsp 2. Seori - Running Through The Night &nbsp 3. Lay.bn - them (feat. SWRY) </h2>
+    </div>
+
+    <script>
+        let currentAudio = null; 
+        document.querySelectorAll('.rectangle').forEach(function(rectangle) {
+            rectangle.addEventListener('click', function() {
+            
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0; 
+                }
+
+                // 새로운 음악 재생
+                const sound = new Audio(this.getAttribute('data-sound'));
+                sound.play();
+                currentAudio = sound; 
+            });
+        });
+    </script>
+</body>
+</html>
